@@ -1,0 +1,53 @@
+body{
+    background-image: url(/img/table.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.life{
+    position: absolute;
+}
+h1{
+    border: 2px solid yellow;
+    margin-right: 30%;
+    background-color: aqua;
+    margin-left: 10%;
+}
+.hoger{
+    background-color: green;
+    color: white;
+    font-size: xx-large;
+    font-family: cursive;
+    border: 2px solid white;
+    border-radius: 20%;
+    width: 150px;
+    height: 60px;
+    margin-top: 35%;
+    margin-left: 20%;
+    cursor: pointer;
+}
+.hoger:hover{
+    color: blue;
+    border: 2px solid yellow;
+    background-color: green;
+    transform: translateX(25%);
+    transform: translateY(10%);
+}
+.lager{
+    background-color: red;
+    color: white;
+    font-size: xx-large;
+    font-family: cursive;
+    border: 2px solid white;
+    border-radius: 20%;
+    width: 150px;
+    height: 60px;
+    margin-left: 40%;
+    cursor: pointer;
+}
+.lager:hover{
+    color: blue;
+    border: 2px solid yellow;
+    background-color: green;
+    transform: translateX(25%);
+    transform: translateY(10%);
+}
