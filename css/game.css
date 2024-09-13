@@ -12,6 +12,10 @@ h1{
     background-color: aqua;
     margin-left: 10%;
 }
+.dice1{
+    margin: 220px 110px 120px 0px;
+    width: 380px;
+}
 .hoger{
     background-color: green;
     color: white;
