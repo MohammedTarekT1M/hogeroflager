@@ -21,6 +21,12 @@ h1{
     padding: 0;
     /* margin-left: 10%; */
 }
+p{
+    color: white;
+    font-size: x-large;
+    font-family: cursive;
+    text-align: center;
+}
 .dice1{
     margin: 0;
     width: 480px;

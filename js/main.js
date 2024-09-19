@@ -23,3 +23,11 @@
 // // hier zie je je best score
 // let score=('score') 
 // Math.random()
+
+const currrentRoll = document.querySelector('.current-roll')
+const scoreDisplay = document.querySelector('.score')
+const hogerButton = document.querySelector('.hoger')
+const lagerButton = document.querySelector('.lager')
+
+let currentRoll = diceRoll()
+let score = 0 
