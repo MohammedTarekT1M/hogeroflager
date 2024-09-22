@@ -24,10 +24,41 @@
 // let score=('score') 
 // Math.random()
 
-const currrentRoll = document.querySelector('.current-roll')
+const currrentRollDisplay = document.querySelector('.current-roll')
 const scoreDisplay = document.querySelector('.score')
+const livesDisplay = document.querySelector('.lives')
 const hogerButton = document.querySelector('.hoger')
 const lagerButton = document.querySelector('.lager')
 
 let currentRoll = diceRoll()
 let score = 0 
+let lives = 5
+let bestScore = document.querySelector('bestScore') || 0;
+
+currrentRollDisplay.textContact = currentRoll;
+scoreDisplay.textContent = score;
+livesDisplay.textContent = lives;
+
+function diceRoll(){
+    return Math.floor(Math.random() * 6) + 1;
+}
+console.log(Math.floor(Math.random() *6) + 1);
+
+
+function checkGuess(guess) {
+    const newRoll = diceRoll();
+    let correct = false;
+
+    if (guess === "hoger" && newRoll > currentRoll) {
+        correct = true;
+    } else if (guess === "lager" && newRoll < currentRoll) {
+        correct = true;
+    }
+
+    if (correct) {
+        score++;
+    } else {
+        lives--;
+    }
+
+}
