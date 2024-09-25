@@ -58,7 +58,32 @@ function checkGuess(guess) {
     if (correct) {
         score++;
     } else {
+        // score = 0;
         lives--;
     }
 
+    currentRoll = newRoll;
+    currrentRollDisplay.textContent = currentRoll;
+    scoreDisplay.textContent = score;
+    livesDisplay.textContent = lives;
 }
+
+hogerButton.addEventListener('click', function(){
+    checkGuess("hoger");
+});
+
+lagerButton.addEventListener('click', function(){
+    checkGuess("lager");
+})
+
+if (lives === 0) {
+    gameOver();
+}
+function gameOver(){
+    alert("Game Over");
+    if (score > bestScore) {
+    bestScore = score;
+    localStorage.getItem('bestScore', bestScore);
+}
+}
+
