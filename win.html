@@ -4,26 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>You Win!</title>
+    <link rel="stylesheet" href="css/win.css">
+    <iframe src="jackpot.mp4" allow="autoplay" style="display:none;" id="iframeAudio"></iframe>
 </head>
 <body>
-    <h1>YOU WIN!</h1>
+    <div class="over">
+        <h1>You Win!</h1>
+        <p>Your Score: <span class="final-score">0</span></p>
+        <p>Best Score: <span class="best-score">0</span></p>
+        <a href="index.html"><button class="play-again">Play Again</button></a>
+    </div>
     
 
-
-    <style>
-        body{
-            background-image: url(/img/winner.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-color: green;
-        }
-        h1{
-            font-size: xx-large;
-            font-family: cursive;
-            text-align: center;
-            padding: 250px 10px 5px 0;
-        }
-    </style>
-    <script src="js/main.js"></script>
+    <script src="js/gameover.js"></script>
 </body>
 </html>

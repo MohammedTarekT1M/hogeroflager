@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoger of Lager</title>
+    <title>Hoger Of Lager</title>
     <link rel="stylesheet" href="css/game.css">
+    <iframe src="bgm1.mp4" allow="autoplay" style="display:none;" id="iframeAudio"></iframe>
 </head>
 <body>
-    
-    <h1 class="lives"><img src="img/life.png" width="50px" class="life">5</h1>
-
+    <img src="img/life.png" width="50px" class="life">
+    <h1 class="lives">5</h1>
     <p>Current Roll: <span class="current-roll">0</span></p>
     <p>Score: <span class="score">0</span></p>
-    <p><span class="win"></span></p>
 
-    <img src="img/dice1.png" class="dice1">
+    <img src="img/dice1.png" class="dice1" class="image">
 
-    <button class="hoger">Hoger</button>
-    <button class="lager">Lager</button>
+    <button class="hoger" onclick="changeImage()">Hoger</button>
+    <button class="lager" onclick="changeImage()">Lager</button>
     
 
 
