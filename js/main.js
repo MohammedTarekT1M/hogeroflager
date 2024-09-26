@@ -57,6 +57,8 @@ const lagerButton = document.querySelector('.lager')
 let currentRoll = diceRoll()
 let score = 0;
 let lives = 5;
+
+//????
 let bestScore = localStorage.getItem('bestScore') || 0;
 
 // Toon de beginrol en levens
@@ -68,19 +70,20 @@ livesDisplay.textContent = lives;
 function diceRoll(){
     return Math.floor(Math.random() * 6) + 1;
 }
-console.log(Math.floor(Math.random() *6) + 1);
+
+//console.log(Math.floor(Math.random() *6) + 1);
 
 // Controleer de gok van de speler
 function checkGuess(guess) {
     const newRoll = diceRoll();
     let correct = false;
-
+// 
     if (guess === "hoger" && newRoll > currentRoll) {
         correct = true;
     } else if (guess === "lager" && newRoll < currentRoll) {
         correct = true;
     }
-
+//
     if (correct) {
         score++;
     } else {
