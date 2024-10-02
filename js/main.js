@@ -79,7 +79,7 @@ function checkGuess(guess) {
     // Controleer of het spel afgelopen is of wint
     if (lives <= 0) {
     gameOver();
-    } else if (score >= 10){
+    } else if (score >= 3){
         youWin();
     }
 }

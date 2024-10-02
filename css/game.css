@@ -74,3 +74,10 @@ p{
     transform: translateX(25%);
     transform: translateY(10%);
 }
+/*achtergrond video */
+.back-video{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
