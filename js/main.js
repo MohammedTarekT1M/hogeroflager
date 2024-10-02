@@ -31,32 +31,11 @@ const livesDisplay = document.querySelector('.lives')
 const hogerButton = document.querySelector('.hoger')
 const lagerButton = document.querySelector('.lager')
 
-// const images = [
-//     {
-//         src: "one.png"
-//     },
-//     {
-//         src: "two.png"
-//     },
-//     {
-//         src: "three.png"
-//     },
-//     {
-//         src: "four.png"
-//     },
-//     {
-//         src: "five.png"
-//     },
-//     {
-//         src: "six.png"
-//     }
-// ];
-
-
 // Variabelen initialiseren
 let currentRoll = diceRoll()
 let score = 0;
 let lives = 5;
+let currentIndex = Math.floor(Math.random() * 6) + 1;
 
 //????
 let bestScore = localStorage.getItem('bestScore') || 0;
@@ -68,7 +47,8 @@ livesDisplay.textContent = lives;
 
 // Gooi de dobbelsteen (geeft een getal tussen 1 en 6)
 function diceRoll(){
-    return Math.floor(Math.random() * 6) + 1;
+    let currentIndex = Math.floor(Math.random() * 6) + 1;
+    return currentIndex;
 }
 
 //console.log(Math.floor(Math.random() *6) + 1);
@@ -133,20 +113,53 @@ lagerButton.addEventListener('click', function(){
     checkGuess("lager");
 });
 
-// let currentIndex = 0;
+const images = [
+    {
+        diceValue: 1,
+        src: "img/one.png"
+    },
+    {
+        diceValue: 2,
+        src: "img/two.png"
+    },
+    {
+        diceValue: 3,
+        src: "img/three.png"
+    },
+    {
+        diceValue: 4,
+        src: "img/four.png"
+    },
+    {
+        diceValue: 5,
+        src: "img/five.png"
+    },
+    {
+        diceValue: 6,
+        src: "img/six.png"
+    }
+];
 
-// const randomIndex = Math.floor(Math.random() * images.length)
+// let currentIndex = Math.floor(Math.random() * images.length) + 1;
 
-// function changeImage() {
-//     const imageClass = document.querySelector('.image');
+function changeImage() {
+    const imageClass = document.querySelector('.dice1');
 
-//     imageClass.src = images[currentIndex].src;
+    imageClass.src = 'img/one.png'
 
-//     currentIndex++;
+    currentIndex = Math.floor(Math.random() * 6) + 1;
 
-//     if(currentIndex >= images.length){
-//         currentIndex = 0
-//     }
-// }
+    for(let i = 0; i < images.length; i++){
+        // console.log(images[i])
+        if(currentIndex == images[i].diceValue){
+           console.log(images[i].diceValue); 
+           imageClass.src = images[i].src;
+        } else {
+            // console.log('image is er niet')
+        }
+    }
 
-// window.onload = changeImage;
+    
+}
+
+window.onload = changeImage();
