@@ -26,7 +26,7 @@
 
 // Selecteer elementen 
 const nameDisplay = document.querySelector('.name')
-const currrentRollDisplay = document.querySelector('.current-roll')
+const currentRollDisplay = document.querySelector('.current-roll')
 const scoreDisplay = document.querySelector('.score')
 const livesDisplay = document.querySelector('.lives')
 const hogerButton = document.querySelector('.hoger')
@@ -42,7 +42,7 @@ let currentIndex = Math.floor(Math.random() * 6) + 1;
 let bestScore = localStorage.getItem('bestScore') || 0;
 
 // Toon de beginrol en levens
-currrentRollDisplay.textContact = currentRoll;
+currentRollDisplay.textContent = currentRoll;
 scoreDisplay.textContent = score;
 livesDisplay.textContent = lives;
 
@@ -54,8 +54,7 @@ if(result){
 
 // Gooi de dobbelsteen (geeft een getal tussen 1 en 6)
 function diceRoll(){
-    let currentIndex = Math.floor(Math.random() * 6) + 1;
-    return currentIndex;
+    return Math.floor(Math.random() * 6) + 1;
 }
 
 //console.log(Math.floor(Math.random() *6) + 1);
@@ -86,7 +85,7 @@ function checkGuess(guess) {
     // Controleer of het spel afgelopen is of wint
     if (lives <= 0) {
     gameOver();
-    } else if (score >= 3){
+    } else if (score >= 5){
         youWin();
     }
 }
@@ -95,7 +94,7 @@ function checkGuess(guess) {
 function gameOver(){
     if (score > bestScore) {
     bestScore = score;
-    localStorage.getItem('bestScore', bestScore);
+    localStorage.setItem('bestScore', bestScore);
 }
 //Doorverwijzen naar de game over-pagina
     window.location.href = `gameover.html?score=${score}&bestScore=${bestScore}`;
@@ -152,22 +151,20 @@ const images = [
 function changeImage() {
     const imageClass = document.querySelector('.dice1');
 
-    imageClass.src = 'img/one.png'
+    
 
     currentIndex = Math.floor(Math.random() * 6) + 1;
 
     for(let i = 0; i < images.length; i++){
-        // console.log(images[i])
-        if(currentIndex == images[i].diceValue){
+        console.log(images[i])
+        if(currentIndex === images[i].diceValue){
            console.log(images[i].diceValue);
-           currrentRollDisplay.textContent = currentIndex; 
+           currentRollDisplay.textContent = currentIndex; 
            imageClass.src = images[i].src;
-        } else {
-            // console.log('image is er niet')
         }
     }
 
     
 }
 
-window.onload = changeImage();
+window.onload = changeImage;
