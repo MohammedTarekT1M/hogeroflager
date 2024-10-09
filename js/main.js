@@ -25,6 +25,7 @@
 // Math.random()
 
 // Selecteer elementen 
+const nameDisplay = document.querySelector('.name')
 const currrentRollDisplay = document.querySelector('.current-roll')
 const scoreDisplay = document.querySelector('.score')
 const livesDisplay = document.querySelector('.lives')
@@ -44,6 +45,12 @@ let bestScore = localStorage.getItem('bestScore') || 0;
 currrentRollDisplay.textContact = currentRoll;
 scoreDisplay.textContent = score;
 livesDisplay.textContent = lives;
+
+// Vragen over jouw naam
+const result = prompt('Wat is je naam?');
+if(result){
+    nameDisplay.innerText = result;
+}
 
 // Gooi de dobbelsteen (geeft een getal tussen 1 en 6)
 function diceRoll(){
@@ -72,7 +79,7 @@ function checkGuess(guess) {
 
     // Update de huidige rol, score en levens 
     currentRoll = newRoll;
-    currrentRollDisplay.textContent = currentRoll;
+    
     scoreDisplay.textContent = score;
     livesDisplay.textContent = lives;
 
@@ -152,7 +159,8 @@ function changeImage() {
     for(let i = 0; i < images.length; i++){
         // console.log(images[i])
         if(currentIndex == images[i].diceValue){
-           console.log(images[i].diceValue); 
+           console.log(images[i].diceValue);
+           currrentRollDisplay.textContent = currentIndex; 
            imageClass.src = images[i].src;
         } else {
             // console.log('image is er niet')

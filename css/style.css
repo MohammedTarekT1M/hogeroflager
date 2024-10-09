@@ -62,7 +62,7 @@ h4{
 
 button{
     background-color: rgb(255, 255, 255);
-    color: rgb(255, 0, 115);
+    color: rgb(255, 0, 0);
     font-size: xx-large;
     font-family: cursive;
     border: 2px solid white;
@@ -75,11 +75,13 @@ button{
 }
 
 button:hover{
-    color: blue;
+    color: black;
     border: 2px solid yellow;
     background-color: green;
     transform: translateX(25%);
     transform: translateY(10%);
+    box-shadow: 10px 10px;
+    transition: box-shadow 0.3s ease;
 }
 /* @media only screen and (min-width: 200px) {
     body {
