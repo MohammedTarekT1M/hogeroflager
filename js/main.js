@@ -36,6 +36,7 @@ function diceRoll(){
 // Controleer de gok van de speler
 function checkGuess(guess) {
     const newRoll = diceRoll();
+    const myNewRoll = diceRoll();
     let correct = false;
 // 
     if (guess === "hoger" && newRoll > currentRoll) {
@@ -54,6 +55,7 @@ function checkGuess(guess) {
     currentRoll = newRoll;
     scoreDisplay.textContent = score;
     livesDisplay.textContent = lives;
+    myRoll.textContent = myNewRoll;
 
     // Controleer of het spel afgelopen is of wint
     if (lives <= 0) {
