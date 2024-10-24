@@ -6,6 +6,7 @@ const livesDisplay = document.querySelector('.lives')
 const hogerButton = document.querySelector('.hoger')
 const lagerButton = document.querySelector('.lager')
 const myRoll = document.querySelector('.your-roll');
+const goButton = document.querySelector('.go');
 
 // Variabelen initialiseren
 let currentRoll = diceRoll()
