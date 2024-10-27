@@ -78,7 +78,6 @@ p{
     box-shadow: 10px 10px;
     transition: box-shadow 0.3s ease;
 }
-/*achtergrond video */
 .back-video{
     position: absolute;
     right: 0;

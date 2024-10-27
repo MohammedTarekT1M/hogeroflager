@@ -1,18 +1,18 @@
-// Selecteer elementen 
-const nameDisplay = document.querySelector('.name')
-const currentRollDisplay = document.querySelector('.current-roll')
-const scoreDisplay = document.querySelector('.score')
-const livesDisplay = document.querySelector('.lives')
-const hogerButton = document.querySelector('.hoger')
-const lagerButton = document.querySelector('.lager')
+// Selecteer elementen
+const nameDisplay = document.querySelector('.name');
+const currentRollDisplay = document.querySelector('.current-roll');
+const scoreDisplay = document.querySelector('.score');
+const livesDisplay = document.querySelector('.lives');
+const hogerButton = document.querySelector('.hoger');
+const lagerButton = document.querySelector('.lager');
 const myRoll = document.querySelector('.your-roll');
 const goButton = document.querySelector('.go');
 
 // Variabelen initialiseren
-let currentRoll = diceRoll()
+let currentRoll = diceRoll();
 let score = 0;
 let lives = 5;
-let currentIndex = Math.floor(Math.random() * 6) + 1;
+let gameStarted = false;
 
 // Bewaart de data van bestscore
 let bestScore = localStorage.getItem('bestScore') || 0;
@@ -23,120 +23,113 @@ scoreDisplay.textContent = score;
 livesDisplay.textContent = lives;
 
 // Vragen over jouw naam
-const result = prompt('Wat is je naam?');
-if(result){
+const result = prompt('Wat is je naam?', 'Speler');
+if (result) {
     nameDisplay.innerText = result;
 }
 
 // Gooi de dobbelsteen (geeft een getal tussen 1 en 6)
-function diceRoll(){
+function diceRoll() {
     return Math.floor(Math.random() * 6) + 1;
 }
 
+// Start het spel door op de knop "Go" te klikken
+goButton.addEventListener('click', function () {
+    if (!gameStarted) {
+        currentRoll = diceRoll();
+        currentRollDisplay.textContent = currentRoll;
+        myRoll.textContent = 'Wat Denk Je, Hoger of Lager??';
+        gameStarted = true;
+    }
+});
 
 // Controleer de gok van de speler
 function checkGuess(guess) {
-    const newRoll = diceRoll();
+    if (!gameStarted) return;
+
     const myNewRoll = diceRoll();
     let correct = false;
-// 
-    if (guess === "hoger" && newRoll > currentRoll) {
-        correct = true;
-    } else if (guess === "lager" && newRoll < currentRoll) {
+
+    // Controleer of de gok juist is
+    if ((guess === "hoger" && myNewRoll > currentRoll) || (guess === "lager" && myNewRoll < currentRoll)) {
         correct = true;
     }
-//
+
+    // Update de score of levens op basis van de gok
     if (correct) {
         score++;
     } else {
         lives--;
     }
 
-    // Update de huidige rol, score en levens 
-    currentRoll = newRoll;
+    // Update de score en de weergave van levens
     scoreDisplay.textContent = score;
     livesDisplay.textContent = lives;
     myRoll.textContent = myNewRoll;
 
-    // Controleer of het spel afgelopen is of wint
+    // Update dobbelsteenafbeelding op basis van de nieuwe roll
+    changeImage();
+
+    // Controleer of het spel afgelopen of gewonnen is
     if (lives <= 0) {
-    gameOver();
-    } else if (score >= 5){
+        gameOver();
+    } else if (score >= 5) {
         youWin();
+    } else {
+        gameStarted = false;
     }
 }
 
+
 // Game over function
-function gameOver(){
+function gameOver() {
     if (score > bestScore) {
-    bestScore = score;
-    localStorage.setItem('bestScore', bestScore);
-}
-//Doorverwijzen naar de game over-pagina
+        bestScore = score;
+        localStorage.setItem('bestScore', bestScore);
+    }
     window.location.href = `gameover.html?score=${score}&bestScore=${bestScore}`;
 }
 
 // Win function
-function youWin(){
-    if (score > bestScore){
+function youWin() {
+    if (score > bestScore) {
         bestScore = score;
         localStorage.setItem('bestScore', bestScore);
     }
-    // Doorverwijzen naar de win pagina
     window.location.href = `win.html?score=${score}&bestScore=${bestScore}`;
 }
 
 // EventListener voor knoppen
-hogerButton.addEventListener('click', function(){
+hogerButton.addEventListener('click', function () {
     checkGuess("hoger");
 });
 
-lagerButton.addEventListener('click', function(){
+lagerButton.addEventListener('click', function () {
     checkGuess("lager");
 });
 
 // Array voor img
 const images = [
-    {
-        diceValue: 1,
-        src: "img/one.png"
-    },
-    {
-        diceValue: 2,
-        src: "img/two.png"
-    },
-    {
-        diceValue: 3,
-        src: "img/three.png"
-    },
-    {
-        diceValue: 4,
-        src: "img/four.png"
-    },
-    {
-        diceValue: 5,
-        src: "img/five.png"
-    },
-    {
-        diceValue: 6,
-        src: "img/six.png"
-    }
+    { diceValue: 1, src: "img/one.png" },
+    { diceValue: 2, src: "img/two.png" },
+    { diceValue: 3, src: "img/three.png" },
+    { diceValue: 4, src: "img/four.png" },
+    { diceValue: 5, src: "img/five.png" },
+    { diceValue: 6, src: "img/six.png" }
 ];
 
 function changeImage() {
     const imageClass = document.querySelector('.dice1');
-    currentIndex = Math.floor(Math.random() * 6) + 1;
 
-    for(let i = 0; i < images.length; i++){
-        console.log(images[i])
-        if(currentIndex === images[i].diceValue){
-           console.log(images[i].diceValue);
-           currentRollDisplay.textContent = currentIndex; 
-           imageClass.src = images[i].src;
+    for (let i = 0; i < images.length; i++) {
+        if (currentRoll === images[i].diceValue) {
+            currentRollDisplay.textContent = currentRoll;
+            imageClass.src = images[i].src;
         }
     }
-
-    
 }
 
-window.onload = changeImage;
+// Reset de startstatus van het spel en de afbeelding wanneer de pagina wordt geladen
+window.onload = function() {
+    changeImage();
+};
