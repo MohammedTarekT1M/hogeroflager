@@ -39,6 +39,7 @@ goButton.addEventListener('click', function () {
         currentRoll = diceRoll();
         currentRollDisplay.textContent = currentRoll;
         myRoll.textContent = 'Wat Denk Je, Hoger of Lager??';
+        changeImage(currentRoll);
         gameStarted = true;
     }
 });
@@ -68,7 +69,7 @@ function checkGuess(guess) {
     myRoll.textContent = myNewRoll;
 
     // Update dobbelsteenafbeelding op basis van de nieuwe roll
-    changeImage();
+    changeImage(myNewRoll);
 
     // Controleer of het spel afgelopen of gewonnen is
     if (lives <= 0) {
@@ -77,6 +78,7 @@ function checkGuess(guess) {
         youWin();
     } else {
         gameStarted = false;
+        currentRoll = myNewRoll;
     }
 }
 
@@ -118,12 +120,11 @@ const images = [
     { diceValue: 6, src: "img/six.png" }
 ];
 
-function changeImage() {
+function changeImage(diceValue) {
     const imageClass = document.querySelector('.dice1');
 
     for (let i = 0; i < images.length; i++) {
-        if (currentRoll === images[i].diceValue) {
-            currentRollDisplay.textContent = currentRoll;
+        if (diceValue === images[i].diceValue) {
             imageClass.src = images[i].src;
         }
     }
@@ -131,5 +132,5 @@ function changeImage() {
 
 // Reset de startstatus van het spel en de afbeelding wanneer de pagina wordt geladen
 window.onload = function() {
-    changeImage();
+    changeImage(currentRoll);
 };
